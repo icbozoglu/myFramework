@@ -8,6 +8,14 @@ public class PersonelDto extends KisiDto<Integer> {
     private Department bolum;
     private double maas;
 
+    public PersonelDto() {
+    }
+
+    public PersonelDto(Department bolum, double maas) {
+        this.bolum = bolum;
+        this.maas = maas;
+    }
+
     public Department getBolum() {
         return bolum;
     }
@@ -23,4 +31,6 @@ public class PersonelDto extends KisiDto<Integer> {
     public void setMaas(double maas) {
         this.maas = maas;
     }
+
+
 }

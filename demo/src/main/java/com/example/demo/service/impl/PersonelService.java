@@ -27,9 +27,8 @@ public class PersonelService implements Readable<PersonelDto, Integer >, Writeab
 
     @Override
     public List<PersonelDto> getAll() {
-        return List.of();
+        return personelRepository.findAll().stream().map(p -> new PersonelDto(p.getBolum(), p.getMaas())).toList();
     }
-
 
     @Override
     public PersonelDto add(PersonelDto personelDto) {
