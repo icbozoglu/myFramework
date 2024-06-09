@@ -2,24 +2,24 @@ package com.example.demo.entity.abst;
 
 import com.example.demo.enums.Status;
 import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.annotations.GenerationTime;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.Instant;
 
 @MappedSuperclass
 public abstract class BaseEntity<T> {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private T id;
 
-	@Column(nullable = false, updatable = false)
-	private LocalDateTime eklenmeZamani;
+	@CreationTimestamp
+	private Instant eklenmeZamani;
 	private String ekleyenKullanici;
 
-	private LocalDateTime sonGuncellenmeZamani;
+	@UpdateTimestamp
+	private Instant sonGuncellenmeZamani;
 	private String sonGuncelleyenKullanici;
+
 	@Enumerated(EnumType.STRING)
 	private Status durum;
 
@@ -34,11 +34,11 @@ public abstract class BaseEntity<T> {
 		this.id = id;
 	}
 
-	public LocalDateTime getEklenmeZamani() {
+	public Instant getEklenmeZamani() {
 		return eklenmeZamani;
 	}
 
-	public void setEklenmeZamani(LocalDateTime eklenmeZamani) {
+	public void setEklenmeZamani(Instant eklenmeZamani) {
 		this.eklenmeZamani = eklenmeZamani;
 	}
 
@@ -50,11 +50,11 @@ public abstract class BaseEntity<T> {
 		this.ekleyenKullanici = ekleyenKullanici;
 	}
 
-	public LocalDateTime getSonGuncellenmeZamani() {
+	public Instant getSonGuncellenmeZamani() {
 		return sonGuncellenmeZamani;
 	}
 
-	public void setSonGuncellenmeZamani(LocalDateTime sonGuncellenmeZamani) {
+	public void setSonGuncellenmeZamani(Instant sonGuncellenmeZamani) {
 		this.sonGuncellenmeZamani = sonGuncellenmeZamani;
 	}
 
